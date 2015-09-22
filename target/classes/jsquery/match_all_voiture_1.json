@@ -1,0 +1,27 @@
+{
+	"query": 
+	{
+		"match_all": 
+		{
+			
+		}
+	},
+
+	"size": "2",
+	"aggs": 
+	{
+		"test": 
+		{
+			"terms": 
+			{
+				"field": "origine"
+			},"aggs": {
+			  "cyl": {
+			    "terms": {
+			      "field": "cylendres"
+			    }
+			  }
+			}
+		}
+	} 
+}
