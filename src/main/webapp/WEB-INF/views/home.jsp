@@ -5,23 +5,40 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
-<title>Home</title>			
-<link rel="stylesheet"  href="facets.css">
+<title>Home</title>
+
+<style type="text/css">
+	div {
+	 vertical-align: top;
+	 display:  inline-block;
+	 
+	}	
+</style>
 
 </head>
 <body>
-<%-- 	<%=this.getClass().getClassLoader().getResource("./facets.css")%> --%>
-	<form:form action="" method="">
+
+	<form:form   action="" method="post">
 		<c:set var="bucketFacets" value="${facets}" scope="request"></c:set>
-		<%-- 	<%! @SuppressWarnings("unchecked") %> --%>
+
 		<%
-			request.setAttribute("history", new LinkedList<Duo<String, String>>());
-				request.setAttribute("level", new Integer(0));
+ 			request.setAttribute("history", new LinkedList<Duo<String, String>>());
+ 			request.setAttribute("level", new Integer(0));
 		%>
-		<%-- 	<c:out value="${history}"></c:out> --%>
-		<div>
-			<jsp:include page="facets.jsp"></jsp:include>
-		</div>
+		
+
+
+			
+				<div>cccccccccc</div>
+				<div><jsp:include page="facets.jsp"></jsp:include></div>
+			
+
+
+		
+		
+		<br>
+		
+		<input type="submit" value="send">
 	</form:form>
 
 

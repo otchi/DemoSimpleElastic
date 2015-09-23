@@ -42,11 +42,11 @@
 						<c:choose>
 							<c:when test="${i}">
 								<c:set var="path"
-									value="${path}facets['${duo.first}'].buckets['${duo.seconde}']."></c:set>
+									value="${path}facets[${duo.first}].buckets[${duo.seconde}]."></c:set>
 							</c:when>
 							<c:otherwise>
 								<c:set var="path"
-									value="${path}aggregations.aggregations['${duo.first}'].buckets['${duo.seconde}']."></c:set>
+									value="${path}facetableAggrs[${duo.first}].buckets[${duo.seconde}]."></c:set>
 							</c:otherwise>
 
 
@@ -57,14 +57,17 @@
 					<%-- 						<c:out value="+++++++++++++>>>>>${facets}"></c:out> --%>
 					<%-- 						<c:out value="+++++++++++++>>>>>${path}"></c:out> --%>
 					<%-- 						<form:checkbox path="facets['${facetEntry.key}'].buckets['${bucketEntry.key}'].isChecked"/> --%>
-					<li><c:out value="${bucketEntry.key} :"></c:out> <form:checkbox
-							path="${path}isChecked" /></li>
+					<li>
+						<c:out value="${bucketEntry.key} :"></c:out> 
+						<form:checkbox path="${path}isChecked" />
+						<form:hidden path="${path}count" />
+					</li>
 
 
-					<c:set var="bucketAgg" value="${bucket.aggregations}"></c:set>
-					<c:set var="bucketFacets" value="${bucketAgg.aggregations}"
+<%-- 					<c:set var="bucketAgg" value="${bucket.aggregations}"></c:set> --%>
+					<c:set var="bucketFacets" value="${bucket.facetableAggrs}"
 						scope="request"></c:set>
-					<c:if test="${bucketFacets.size() > 0 }">
+					<c:if test="${bucketFacets.size() > 0  }">
 
 						<%
 							Integer index = (Integer) request.getAttribute("level");
