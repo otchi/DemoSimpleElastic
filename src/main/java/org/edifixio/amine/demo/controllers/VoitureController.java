@@ -3,9 +3,8 @@ package org.edifixio.amine.demo.controllers;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
+import org.edifixio.amine.demo.entites.PageBeanResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,7 +23,8 @@ import com.google.gson.JsonObject;
 public class VoitureController {
 	@Autowired
 	private SearchInElasctic sie;
-	JsonObject jo;
+	private JsonObject jo;
+	private AggrsResultObject aro;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index(ModelMap model) throws FileNotFoundException, IOException {
@@ -34,25 +34,37 @@ public class VoitureController {
 		jo=JsonHandleUtil.jsonFile(f).getAsJsonObject();
 		JsonObject localQuery=JsonHandleUtil.jsonString(JsonObject.class, jo.toString());
 		
+		
 		ResultObject ro = sie.search(localQuery);
+		System.out.println(ro);
+		aro=ro.getAggsresult();
+		AggrsResultObject cpAro=aro.getCopy();
 		
 		
 		
 		
 		model.addAttribute("results", ro.getResultList());
-		model.addAttribute("facets", ro.getAggsresult().getFacets());
+		model.addAttribute("facets", aro.getFacets());
 		
 	//ro.getAggsresult().getFacets().get("test").getBuckets().get("us").getAggregations().getFacetableAggrs().get("cyl").getBuckets().get("8").setIsChecked(false);;
-		return new ModelAndView("home", "command",ro.getAggsresult());
+		return new ModelAndView("home", "command",new PageBeanResponse("",cpAro));
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView indexPost(@ModelAttribute("SpringWeb") AggrsResultObject  aro, ModelMap model)
+	public ModelAndView indexPost(@ModelAttribute("SpringWeb") PageBeanResponse  pbr, ModelMap model)
 			throws FileNotFoundException, IOException {
 
-		System.out.println("--------->"+aro);
+		System.out.println("cp : --------->"+pbr.getAro());
+		this.aro.update(pbr.getAro());
+		System.out.println("origin : --------->"+this.aro);
+		System.out.println("jo----->"+jo);
+		JsonObject localQuery=JsonHandleUtil.jsonString(JsonObject.class, jo.toString());
+		ResultObject ro = sie.search(localQuery);
 		model.addAttribute("facets", aro.getFacets());
-		return new ModelAndView("home", "command",aro);
+		model.addAttribute("results", ro.getResultList());
+		pbr.setAro(this.aro.getCopy());
+		System.out.println("cp : --------->"+pbr.getAro());
+		return new ModelAndView("home", "command",pbr);
 	}
 
 }

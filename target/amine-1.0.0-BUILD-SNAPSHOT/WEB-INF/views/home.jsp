@@ -8,9 +8,10 @@
 <title>Home</title>
 
 <style type="text/css">
-	#facets{
-		
-		display: inline-block;
+	div {
+	 vertical-align: top;
+	 display:  inline-block;
+	 
 	}	
 </style>
 
@@ -26,12 +27,18 @@
 		%>
 		
 
+
+			
+				<form:input path="search"/><input type="submit" value="search">
+				<div><jsp:include page="facets.jsp"></jsp:include></div>
+			
+
+
 		
-		<div id="facets">
-			<jsp:include page="facets.jsp"></jsp:include>
-		</div>
 		
-		<input type="submit" value="send">
+		<br>
+		
+		
 	</form:form>
 
 

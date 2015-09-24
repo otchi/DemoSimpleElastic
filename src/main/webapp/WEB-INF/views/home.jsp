@@ -13,6 +13,13 @@
 	 display:  inline-block;
 	 
 	}	
+	
+	td {
+		border-style: solid;
+		
+	}
+	
+	
 </style>
 
 </head>
@@ -28,8 +35,29 @@
 		
 
 
+				<div>
+				<form:input path="search"/><input type="submit" value="search">
+				
+				<table>
+				
+				<thead> <tr><td>voiture</td><td>cylendres</td></tr></thead>
+				<tbody>
+				<c:forEach items="${results}" var="v">
+					<tr>
+						<td>${v.field1}</td>
+						<td>${v.field2}</td>
+					</tr>
+				</c:forEach>
+				
+				
+				
+				</tbody>
+				
+				
+				</table>
+				</div>
 			
-				<div>cccccccccc</div>
+				
 				<div><jsp:include page="facets.jsp"></jsp:include></div>
 			
 
@@ -38,7 +66,7 @@
 		
 		<br>
 		
-		<input type="submit" value="send">
+		
 	</form:form>
 
 

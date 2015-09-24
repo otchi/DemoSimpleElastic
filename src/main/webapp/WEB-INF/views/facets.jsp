@@ -42,7 +42,7 @@
 						<c:choose>
 							<c:when test="${i}">
 								<c:set var="path"
-									value="${path}facets[${duo.first}].buckets[${duo.seconde}]."></c:set>
+									value="${path}aro.facets[${duo.first}].buckets[${duo.seconde}]."></c:set>
 							</c:when>
 							<c:otherwise>
 								<c:set var="path"
@@ -60,7 +60,7 @@
 					<li>
 						<c:out value="${bucketEntry.key} :"></c:out> 
 						<form:checkbox path="${path}isChecked" />
-						<form:hidden path="${path}count" />
+<%-- 						<form:hidden path="${path}count" /> --%>
 					</li>
 
 
@@ -74,6 +74,11 @@
 										request.setAttribute("level", ((int) index + 1));
 						%>
 						<jsp:include page="facets.jsp"></jsp:include>
+						
+						<%
+ 						 	index = (Integer) request.getAttribute("level");
+ 							request.setAttribute("level", ((int) index - 1));
+ 						%> 
 					</c:if>
 
 
@@ -86,10 +91,7 @@
 
 				</c:forEach>
 
-			</ul> <%
- 		Integer index = (Integer) request.getAttribute("level");
- 		request.setAttribute("level", ((int) index - 1));
- 	%> <%-- 		<c:out value="${level}"></c:out> --%>
+			</ul> <%-- 		<c:out value="${level}"></c:out> --%>
 		</li>
 	</ul>
 

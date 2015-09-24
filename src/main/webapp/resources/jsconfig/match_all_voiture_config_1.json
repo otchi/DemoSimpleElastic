@@ -31,7 +31,7 @@
 	[
 		{
 			"facet_name":"test",
-			"sub_facets":["cyl"]
+			"sub_facets":["cyl","model"]
 			
 		}
 	]

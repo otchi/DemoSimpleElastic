@@ -15,13 +15,38 @@
 			"terms": 
 			{
 				"field": "origine"
-			},"aggs": {
-			  "cyl": {
-			    "terms": {
-			      "field": "cylendres"
-			    }
-			  }
+			},
+
+			"aggs": 
+			{
+				"cyl": 
+				{
+					"terms": 
+					{
+						"field": "cylendres"
+					}
+				},
+
+				"model": 
+				{
+					"range": 
+					{
+						"field": "model",
+						"ranges": 
+						[
+							{
+								"from": 60,
+								"to": 75
+							},
+
+							{
+								"from": 75,
+								"to": 90
+							}
+						]
+					}
+				}
 			}
 		}
-	} 
+	}
 }
