@@ -15,15 +15,14 @@
 
 	"_response": 
 	{
-		"class": "com.edifixio.amine.object.TestObject",
+		"class": "org.edifixio.amine.demo.entites.Voiture",
 		"mapping": 
 		{
-			"voiture": "field1",
-			"cylendres": 
-			{
-				"name": "field3",
-				"lazy": true
-			}
+			"voiture": "nomVoiture",
+			"cylendres":"cylendres",
+			"model":"annee",
+			"origine":"pays"
+			
 		}
 	},
 
@@ -31,7 +30,7 @@
 	[
 		{
 			"facet_name":"test",
-			"sub_facets":["cyl","model"]
+			"sub_facets":["cyl"]
 			
 		}
 	]

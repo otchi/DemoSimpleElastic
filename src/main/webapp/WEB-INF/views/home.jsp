@@ -36,16 +36,26 @@
 
 
 				<div>
-				<form:input path="search"/><input type="submit" value="search">
+<%-- 				<form:input path="search"/> --%>
+				<input type="submit" value="search">
 				
 				<table>
-				
-				<thead> <tr><td>voiture</td><td>cylendres</td></tr></thead>
+
+				<thead>
+					<tr>
+						<td>voiture</td>
+						<td>cylendres</td>
+						<td>annee</td>
+						<td>pays</td>
+					</tr>
+				</thead>
 				<tbody>
 				<c:forEach items="${results}" var="v">
 					<tr>
-						<td>${v.field1}</td>
-						<td>${v.field2}</td>
+						<td>${v.nomVoiture}</td>
+						<td>${v.cylendres}</td>
+						<td>${v.annee}</td>
+						<td>${v.pays}</td>
 					</tr>
 				</c:forEach>
 				
@@ -60,9 +70,6 @@
 				
 				<div><jsp:include page="facets.jsp"></jsp:include></div>
 			
-
-
-		
 		
 		<br>
 		

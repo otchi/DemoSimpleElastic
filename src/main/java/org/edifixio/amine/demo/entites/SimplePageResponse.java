@@ -2,16 +2,16 @@ package org.edifixio.amine.demo.entites;
 
 import com.edifixio.amine.application.elasticResults.AggrsResultObject;
 
-public class PageBeanResponse {
+public class SimplePageResponse {
 	
 	private String search;
 	private AggrsResultObject aro;
 	
-	public PageBeanResponse() {
+	public SimplePageResponse() {
 		super();
 	}
 	
-	public PageBeanResponse(String search, AggrsResultObject aro) {
+	public SimplePageResponse(String search, AggrsResultObject aro) {
 		super();
 		this.search = search;
 		this.aro = aro;

@@ -12,9 +12,8 @@
 			<ul>
 				<c:forEach items="${facet.buckets}" var="bucketEntry">
 
-					<%-- 					<c:out value="${bucketEntry.key}"></c:out> --%>
+							
 
-					<%-- 					<c:out value="${bucketEntry.value}"></c:out> --%>
 					<c:set var="bucket" value="${bucketEntry.value}"></c:set>
 
 					<%-- 					<li><c:out value="${bucket.count}"></c:out></li> --%>
@@ -58,9 +57,9 @@
 					<%-- 						<c:out value="+++++++++++++>>>>>${path}"></c:out> --%>
 					<%-- 						<form:checkbox path="facets['${facetEntry.key}'].buckets['${bucketEntry.key}'].isChecked"/> --%>
 					<li>
-						<c:out value="${bucketEntry.key} :"></c:out> 
+						<c:out value="${bKey} :"></c:out> 
 						<form:checkbox path="${path}isChecked" />
-<%-- 						<form:hidden path="${path}count" /> --%>
+						<c:out value="(${bucket.count})"></c:out> 
 					</li>
 
 
