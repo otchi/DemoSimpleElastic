@@ -7,7 +7,7 @@
 		}
 	},
 
-	"size": "2",
+	"size": "40",
 	"aggs": 
 	{
 		"test": 
@@ -24,26 +24,6 @@
 					"terms": 
 					{
 						"field": "cylendres"
-					}
-				},
-
-				"model": 
-				{
-					"range": 
-					{
-						"field": "model",
-						"ranges": 
-						[
-							{
-								"from": 60,
-								"to": 75
-							},
-
-							{
-								"from": 75,
-								"to": 90
-							}
-						]
 					}
 				}
 			}

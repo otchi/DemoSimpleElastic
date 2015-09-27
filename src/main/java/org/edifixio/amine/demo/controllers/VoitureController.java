@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.edifixio.amine.application.SearchInElasctic;
-import com.edifixio.amine.application.elasticResults.AggrsResultObject;
-import com.edifixio.amine.application.elasticResults.ResultObject;
+import com.edifixio.amine.application.elasticResults.AggrsReturnObject;
+import com.edifixio.amine.application.elasticResults.ApplicationReturn;
 import com.edifixio.jsonFastBuild.selector.JsonHandleUtil;
 import com.google.gson.JsonObject;
 
@@ -24,7 +24,7 @@ public class VoitureController {
 	@Autowired
 	private SearchInElasctic sie;
 	private JsonObject jo;
-	private ResultObject ro;
+	private ApplicationReturn ro;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index(ModelMap model) throws FileNotFoundException, IOException {
@@ -36,10 +36,10 @@ public class VoitureController {
 		
 		ro = sie.search(localQuery);
 		System.out.println(ro);
-		AggrsResultObject aro=ro.getAggsresult();
-		AggrsResultObject cpAro=aro.getCopy();
-		
-		model.addAttribute("results", ro.getResultList());
+		AggrsReturnObject aro=ro.getAggrs();
+		AggrsReturnObject cpAro=aro.getCopy();
+		System.out.println(ro.getReturnMetas().getMetaHits().getTotal());
+		model.addAttribute("results", ro.getHitObjectList());
 		model.addAttribute("facets", aro.getFacets());
 		
 	//ro.getAggsresult().getFacets().get("test").getBuckets().get("us").getAggregations().getFacetableAggrs().get("cyl").getBuckets().get("8").setIsChecked(false);;
@@ -52,15 +52,15 @@ public class VoitureController {
 		System.out.println("/************************************************************************"
 				+ "**************************************************/");
 		System.out.println("cp : --------->"+pbr.getAro());
-		this.ro.getAggsresult().update(pbr.getAro());
-		System.out.println("origin : --------->"+this.ro.getAggsresult());
+		this.ro.getAggrs().update(pbr.getAro());
+		System.out.println("origin : --------->"+this.ro.getAggrs());
 		System.out.println("jo----->"+jo);
 		JsonObject localQuery=JsonHandleUtil.jsonString(JsonObject.class, jo.toString());
 		ro = sie.search(localQuery);
 		//System.out.println(ro);
-		ro.setAggsresult(this.ro.getAggsresult());
-		model.addAttribute("facets",this.ro.getAggsresult().getFacets());
-		model.addAttribute("results",this.ro.getResultList());
+		ro.setAggrs(this.ro.getAggrs());
+		model.addAttribute("facets",this.ro.getAggrs().getFacets());
+		model.addAttribute("results",this.ro.getHitObjectList());
 				
 		//pbr.setAro(this.ro.getAggsresult().getCopy());
 		//System.out.println("cp : --------->"+pbr.getAro());
