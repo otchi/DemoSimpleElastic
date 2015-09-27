@@ -50,7 +50,8 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach items="${results}" var="v">
+				<c:forEach items="${results}" var="r">
+					<c:set var="v" value="${r.sourceObject}"></c:set>
 					<tr>
 						<td>${v.nomVoiture}</td>
 						<td>${v.cylendres}</td>
