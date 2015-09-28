@@ -2,18 +2,28 @@
 	"comment": "put complexe data",
 	"send to index": 
 	{
-		"index name": "personne",
+		"index name": "personnalité",
 		"type name": "ecrivain",
 		"list": 
 		[
 			{
-				"nom": "",
-				"livre majeur": "",
-				"nationalité": "",
+				"nom": "Albert Camus",
+				"Œuvres majeur": "L'Homme révolté, L'Étranger ",
+				"nationalité": "française",
 				"detail": 
 				{
-					"biographie": "",
-					"distinction majeur": ""
+					"biographie": "né le 7 novembre 1913 à Mondovi, près d'Annaba (anciennement Bône), en Algérie, et mort le 4 janvier 1960 à Villeblevin, dans l'Yonne en France ...........",
+					"distinction majeur": "Prix Nobel de littérature en 1957"
+				}
+			},
+			{
+				"nom": "Friedrich Wilhelm Nietzsche",
+				"Œuvres majeur": "La Naissance de la tragédie, trop humain ",
+				"nationalité": "Royaume de Prusse (Allemagne) ",
+				"detail": 
+				{
+					"biographie": "philosophe et poète allemand né le 15 octobre 1844 à Röcken, en Prusse, et mort le 25 août 1900 à Weimar, en Allemagne.L'œuvre de Nietzsche est essentiellement une critique ....",
+					"distinction majeur": "??"
 				}
 			}
 		]

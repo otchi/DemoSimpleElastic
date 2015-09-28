@@ -1,0 +1,56 @@
+{
+	"_host": "http://localhost:9200",
+	"_indexes": 
+	{
+		"names": 
+		[
+			"personnalité"
+		],
+
+		"types": 
+		[
+			"ecrivain"
+		]
+	},
+
+	"_request": 
+	{
+		"class": "org.edifixio.amine.demo.entites.SimpleSearchBean",
+		"mapping": 
+		{
+			"search": 
+			[
+				"srch"
+			],
+
+			"from": 
+			[
+				"f"
+			],
+
+			"size": 
+			[
+				"s"
+			]
+		}
+	},
+
+	"_response": 
+	{
+		"class": "org.edifixio.amine.demo.entites.Ecrivain",
+		"mapping": 
+		{
+			"nom": "nom",
+			"Œuvres majeur": "livreMajeur",
+			"nationalité": "pays",
+			"detail": {
+				"name":"detail",
+				"mapping":{
+					"biographie":"biographie",
+					"distinction majeur":"prix"
+				}
+			
+			}
+		}
+	}
+}
