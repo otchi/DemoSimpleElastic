@@ -22,6 +22,7 @@ import com.edifixio.amine.application.elasticResults.ApplicationReturn;
 import com.edifixio.jsonFastBuild.selector.JsonHandleUtil;
 import com.google.gson.JsonObject;
 
+
 @Controller
 @RequestMapping(value = "/completeSearch")
 public class CompleteSearchDemoContoller {
@@ -123,10 +124,6 @@ public class CompleteSearchDemoContoller {
 
 	}
 	
-//	public ModelAndView whiteSeach(){
-//		return null;
-//		
-//	}
 
 	/****************************************************************************************************/
 	public ModelAndView surf(SimplePageResponse spr, ModelMap model, boolean next) {

@@ -1,0 +1,21 @@
+{
+	"comment": "put complexe data",
+	"send to index": 
+	{
+		"index name": "personne",
+		"type name": "ecrivain",
+		"list": 
+		[
+			{
+				"nom": "",
+				"livre majeur": "",
+				"nationalité": "",
+				"detail": 
+				{
+					"biographie": "",
+					"distinction majeur": ""
+				}
+			}
+		]
+	}
+}
