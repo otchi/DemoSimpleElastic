@@ -48,11 +48,11 @@ public class FacetsDemoController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView indexPost(@ModelAttribute("SpringWeb") SimplePageResponse  pbr, ModelMap model)
+	public ModelAndView indexPost(@ModelAttribute("SpringWeb") SimplePageResponse  spr, ModelMap model)
 			throws FileNotFoundException, IOException {
 
-		System.out.println("cp : --------->"+pbr.getAro());
-		this.ro.getAggrs().update(pbr.getAro());
+		System.out.println("cp : --------->"+spr.getAro());
+		this.ro.getAggrs().update(spr.getAro());
 		System.out.println("origin : --------->"+this.ro.getAggrs());
 		JsonObject localQuery=JsonHandleUtil.jsonString(JsonObject.class, jo.toString());
 		ro = sie.search(localQuery);
@@ -61,7 +61,7 @@ public class FacetsDemoController {
 		model.addAttribute("facets",this.ro.getAggrs().getFacets());
 		model.addAttribute("results",this.ro.getHitObjectList());
 				
-		return new ModelAndView("home", "command",pbr);
+		return new ModelAndView("home", "command",spr);
 	
 	}
 

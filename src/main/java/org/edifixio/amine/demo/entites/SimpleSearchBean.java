@@ -9,11 +9,13 @@ public class SimpleSearchBean {
 	
 	public SimpleSearchBean() {
 		super();
+		from=0; 
 	}
 	
 	public SimpleSearchBean(String search) {
 		super();
 		this.search = search;
+		from=0;
 	}
 
 	public boolean next(){
@@ -26,9 +28,8 @@ public class SimpleSearchBean {
 	
 	public boolean last(){
 		if(from>0){
-			if(from-size<0){from=0;}
+			from = (from-size<0) ? 0 : from-size;
 			return true;
-			
 		}
 		return false;
 	}
@@ -60,5 +61,12 @@ public class SimpleSearchBean {
 		from=0;
 		this.total = total;
 	}
+
+	@Override
+	public String toString() {
+		return "SimpleSearchBean [search=" + search + ", from=" + from + ", size=" + size + ", total=" + total + "]";
+	}
+	
+	
 	
 }
