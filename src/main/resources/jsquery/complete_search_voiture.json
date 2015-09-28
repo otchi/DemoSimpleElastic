@@ -1,0 +1,30 @@
+{
+  "query": {
+    "match": {
+      "voiture": "${srch}"
+    }
+  }
+  ,"size": "${s}"
+  ,"from": "${f}"
+  ,"aggs": 
+	{
+		"test": 
+		{
+			"terms": 
+			{
+				"field": "origine"
+			},
+
+			"aggs": 
+			{
+				"cyl": 
+				{
+					"terms": 
+					{
+						"field": "cylendres"
+					}
+				}
+			}
+		}
+	}
+}

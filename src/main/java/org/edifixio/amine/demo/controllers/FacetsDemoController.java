@@ -51,9 +51,9 @@ public class FacetsDemoController {
 	public ModelAndView indexPost(@ModelAttribute("SpringWeb") SimplePageResponse  spr, ModelMap model)
 			throws FileNotFoundException, IOException {
 
-		System.out.println("cp : --------->"+spr.getAro());
+//		System.out.println("cp : --------->"+spr.getAro());
 		this.ro.getAggrs().update(spr.getAro());
-		System.out.println("origin : --------->"+this.ro.getAggrs());
+//		System.out.println("origin : --------->"+this.ro.getAggrs());
 		JsonObject localQuery=JsonHandleUtil.jsonString(JsonObject.class, jo.toString());
 		ro = sie.search(localQuery);
 		//System.out.println(ro);

@@ -13,6 +13,28 @@
 		]
 	},
 
+	"_request": 
+	{
+		"class": "org.edifixio.amine.demo.entites.SimpleSearchBean",
+		"mapping": 
+		{
+			"search": 
+			[
+				"srch"
+			],
+
+			"from": 
+			[
+				"f"
+			],
+
+			"size": 
+			[
+				"s"
+			]
+		}
+	},
+
 	"_response": 
 	{
 		"class": "org.edifixio.amine.demo.entites.Voiture",
@@ -23,16 +45,5 @@
 			"model": "annee",
 			"origine": "pays"
 		}
-	},
-
-	"_facets": 
-	[
-		{
-			"facet_name": "test",
-			"sub_facets": 
-			[
-				"cyl"
-			]
-		}
-	]
+	}
 }

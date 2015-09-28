@@ -2,10 +2,10 @@ package org.edifixio.amine.demo.entites;
 
 public class SimpleSearchBean {
 	
-	private String search;
-	private int from;
-	private int size;
-	private int total;
+	private String search="";
+	private int from=0;
+	private int size=0;
+	private int total=0;
 	
 	public SimpleSearchBean() {
 		super();

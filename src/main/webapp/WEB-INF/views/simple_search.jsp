@@ -9,6 +9,10 @@
 <title>simple search</title>
 
 <style type="text/css">
+table {
+	border-collapse: collapse;
+}
+
 div {
 	vertical-align: top;
 	display: inline-block;
@@ -23,23 +27,33 @@ td {
 <body>
 
 	<form:form method="post" action="">
-		<form:label path="search"> search : </form:label><form:input path="search"/>
-		<input type="submit" value="send"/><br>
-		<form:label path="size"> page size : </form:label> <form:input path="size"/>
-	
+		<form:label path="search"> search : </form:label>
+		<form:input path="search" />
+		<input type="submit" value="send" name="send" />
+		<br>
+		<form:label path="size"> page size : </form:label>
+		<form:select path="size">
+			<form:option value="1"></form:option>
+			<form:option value="2"></form:option>
+			<form:option value="5"></form:option>
+			<form:option value="10"></form:option>
+			<form:option value="15"></form:option>
+			<form:option value="20"></form:option>
+			<form:option value="30"></form:option>
+			<form:option value="50"></form:option>
+			<form:option value="100"></form:option>
+			<form:option value="200"></form:option>
+		</form:select>
+		<br>
+		<input type="submit" value="last" name="last" />
+		<br>
+		<input type="submit" value="next" name="next" />
+		<br>
+		<c:out value="${pagination}"></c:out>
+
 	</form:form>
-		<form:form method="post" action="${context}/amine/simpleSearch/last">
-		<form:hidden path="search"/>
-		<form:hidden path="size"/>
-		<input type="submit" value="last"/><br>
-	</form:form>
-	
-	<form:form method="post" action="${context}/amine/simpleSearch/next">
-		<form:hidden path="search"/>
-		<form:hidden path="size"/>
-		<input type="submit" value="next"/><br>
-	</form:form>
-	
+
+
 
 
 	<table>

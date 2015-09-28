@@ -15,7 +15,13 @@
 	
 	<bean id="simple_search_demo" class="com.edifixio.amine.application.SearchInElasctic">
 		<constructor-arg name="fileConfig" >
-			<value type="java.lang.String">resources/jsconfig/simple_search_config_1.json</value>
+			<value type="java.lang.String">resources/jsconfig/simple_search_voiture_config_1.json</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="complete_demo" class="com.edifixio.amine.application.SearchInElasctic">
+		<constructor-arg name="fileConfig" >
+			<value type="java.lang.String">resources/jsconfig/complete_voiture_config.json</value>
 		</constructor-arg>
 	</bean>
 

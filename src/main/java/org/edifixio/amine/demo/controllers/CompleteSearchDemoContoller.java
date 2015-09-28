@@ -17,16 +17,17 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.edifixio.amine.application.SearchInElasctic;
+import com.edifixio.amine.application.elasticResults.AggrsReturnObject;
 import com.edifixio.amine.application.elasticResults.ApplicationReturn;
 import com.edifixio.jsonFastBuild.selector.JsonHandleUtil;
 import com.google.gson.JsonObject;
 
 @Controller
-@RequestMapping(value = "/simpleSearch")
-public class SearchDemoController {
+@RequestMapping(value = "/completeSearch")
+public class CompleteSearchDemoContoller {
 
 	@Autowired
-	@Qualifier("simple_search_demo")
+	@Qualifier("complete_demo")
 	private SearchInElasctic sie;
 
 	private JsonObject joMatchAll;
@@ -39,16 +40,16 @@ public class SearchDemoController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index(ModelMap model) throws FileNotFoundException, IOException {
 		File f;
-		f = new File(this.getClass().getClassLoader().getResource("jsquery/simple_search_voiture_1.json").getPath());
+		f = new File(this.getClass().getClassLoader().getResource("jsquery/complete_search_voiture.json").getPath());
 		joSearch = JsonHandleUtil.jsonFile(f).getAsJsonObject();
 
 		f = new File(
-				this.getClass().getClassLoader().getResource("jsquery/match_all_pagination_voiture.json").getPath());
+				this.getClass().getClassLoader().getResource("jsquery/complete_match_all_voiture.json").getPath());
 		joMatchAll = JsonHandleUtil.jsonFile(f).getAsJsonObject();
 
 		JsonObject localQuery = JsonHandleUtil.jsonString(JsonObject.class, joMatchAll.toString());
 
-		return whiteSeach(model, localQuery, 10);
+		return firstSeach(model, localQuery, 10);
 	}
 
 	/**************************************************************************************************/
@@ -70,26 +71,28 @@ public class SearchDemoController {
 
 			if (spr == null) {
 				localQuery = JsonHandleUtil.jsonString(JsonObject.class, joMatchAll.toString());
-				return whiteSeach(model, localQuery, 10);
+				return firstSeach(model, localQuery, 10);
 			}
 
-			if (spr.getSearch()==null || spr.getSearch().equals("")) {
-				localQuery = JsonHandleUtil.jsonString(JsonObject.class, joMatchAll.toString());
-				return whiteSeach(model, localQuery, spr.getSize());
-			}
+			localQuery = (spr.getSearch() == null || spr.getSearch().equals("")) ? 
+				 JsonHandleUtil.jsonString(JsonObject.class, joMatchAll.toString()) :
+					 JsonHandleUtil.jsonString(JsonObject.class, joSearch.toString());
 			
-			this.ssb=new SimpleSearchBean(spr.getSearch());
+
+			this.ssb = new SimpleSearchBean(spr.getSearch());
 			this.ssb.setSize(spr.getSize());
-			
-			localQuery=JsonHandleUtil.jsonString(JsonObject.class,
-			joSearch.toString()); ro=sie.search(localQuery, ssb);
-			
+			this.ro.getAggrs().update(spr.getAro());
+			ro = sie.search(localQuery, ssb);
+
 			this.ssb.setTotal(ro.getReturnMetas().getMetaHits().getTotal().intValue());
-			
-			model.addAttribute("results", ro.getHitObjectList()); 
+
+			model.addAttribute("results", ro.getHitObjectList());
 			pagination(model);
 			
-			return new ModelAndView("simple_search", "command",spr);
+			ro.setAggrs(this.ro.getAggrs());
+			model.addAttribute("facets",this.ro.getAggrs().getFacets());
+
+			return new ModelAndView("complete_search", "command", spr);
 
 		}
 
@@ -97,30 +100,40 @@ public class SearchDemoController {
 	}
 
 	/***********************************************************************************************/
-	public ModelAndView whiteSeach(ModelMap model, JsonObject localQuery, int size) {
+	public ModelAndView firstSeach(ModelMap model, JsonObject localQuery, int size) {
 		this.ssb = new SimpleSearchBean();
 		this.ssb.setSize(size);
 
 		ro = sie.search(localQuery, ssb);
 
 		this.ssb.setTotal(ro.getReturnMetas().getMetaHits().getTotal());
+		
+		AggrsReturnObject aro=ro.getAggrs();
+
+		model.addAttribute("facets", aro.getFacets());
 		model.addAttribute("results", ro.getHitObjectList());
 
-		SimplePageResponse spr = new SimplePageResponse();
+		SimplePageResponse spr = new SimplePageResponse(aro.getCopy());
+		
 		spr.setSize(size);
-		
+
 		pagination(model);
-		
-		return new ModelAndView("simple_search", "command", spr);
+
+		return new ModelAndView("complete_search", "command", spr);
 
 	}
+	
+//	public ModelAndView whiteSeach(){
+//		return null;
+//		
+//	}
 
 	/****************************************************************************************************/
 	public ModelAndView surf(SimplePageResponse spr, ModelMap model, boolean next) {
 		JsonObject localQuery;
 		if (spr == null) {
 			localQuery = JsonHandleUtil.jsonString(JsonObject.class, joMatchAll.toString());
-			return whiteSeach(model, localQuery, 10);
+			return firstSeach(model, localQuery, 10);
 		}
 
 		if (spr.getSearch() == null || spr.getSearch().equals("")) {
@@ -148,20 +161,25 @@ public class SearchDemoController {
 			else
 				ssb.last();
 		}
-
+		this.ro.getAggrs().update(spr.getAro());
 		ro = sie.search(localQuery, ssb);
-		
+
 		model.addAttribute("results", ro.getHitObjectList());
 		pagination(model);
+		
+		ro.setAggrs(this.ro.getAggrs());
+		model.addAttribute("facets",this.ro.getAggrs().getFacets());
 
-		return new ModelAndView("simple_search", "command", spr);
+		return new ModelAndView("complete_search", "command", spr);
 
 	}
-	
-	public void pagination(ModelMap model){
-		int page=ssb.getFrom()/ssb.getSize()+1;
-		int totalPage=ssb.getTotal()/ssb.getSize();
-		model.addAttribute("pagination", (page)+"/"+totalPage);
+
+	public void pagination(ModelMap model) {
+		int page = ssb.getFrom() / ssb.getSize() + 1;
+		Double totalPage = (double) ((double)ssb.getTotal() / (double) ssb.getSize());
+		Integer intTotalPage = totalPage.intValue();
+		if(totalPage-intTotalPage>0) intTotalPage++;
+		model.addAttribute("pagination", (page) + "/" + intTotalPage);
 	}
 
 }
