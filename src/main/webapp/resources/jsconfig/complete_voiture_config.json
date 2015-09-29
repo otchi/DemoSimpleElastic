@@ -43,7 +43,12 @@
 			"voiture": "nomVoiture",
 			"cylendres": "cylendres",
 			"model": "annee",
-			"origine": "pays"
+			"origine": "pays",
+			"poid":{
+				"name":"poid",
+				"lazy":true
+				
+			}
 		}
 	},
 

@@ -6,13 +6,16 @@ import java.io.IOException;
 
 import org.edifixio.amine.demo.entites.SimplePageResponse;
 import org.edifixio.amine.demo.entites.SimpleSearchBean;
+import org.edifixio.amine.demo.entites.Voiture;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -99,6 +102,16 @@ public class CompleteSearchDemoContoller {
 
 		return new ModelAndView("test");
 	}
+	
+	/************************************************************************************************/
+	@RequestMapping(value="ajaxCall",method=RequestMethod.POST)
+	public @ResponseBody String ajaxCall(@ModelAttribute(value = "index") Integer index, BindingResult result){
+		Voiture voiture=(Voiture) ro.getHitObjectList().get(index).getSourceObject();
+		System.out.println(voiture);
+		Integer poid=voiture.getPoid();
+		System.out.println(voiture);
+		return ""+poid;
+	} 
 
 	/***********************************************************************************************/
 	public ModelAndView firstSeach(ModelMap model, JsonObject localQuery, int size) {

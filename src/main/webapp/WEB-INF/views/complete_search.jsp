@@ -6,10 +6,19 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>simple search</title>
 
+
+<head>
+
+<title>simple search</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"
+	type="text/javascript"></script>
+
+
+
+<!-- ****************** css ********************************************************************* -->
 <style type="text/css">
 table {
 	border-collapse: collapse;
@@ -24,6 +33,14 @@ td {
 	border-style: solid;
 }
 </style>
+
+<!-- ************************ java Script********************************************************************** -->
+
+
+
+
+
+
 </head>
 
 <body>
@@ -55,34 +72,34 @@ td {
 			</form:select>
 			<br> <input type="submit" value="last" name="last" /> <br>
 			<input type="submit" value="next" name="next" /> <br>
-
-
 			<c:out value="${pagination}"></c:out>
+			
+			<input type="hidden"    id="nbr_element" value="${results.size()}"/>
 			<table>
-
 				<thead>
 					<tr>
 						<td>voiture</td>
 						<td>cylendres</td>
 						<td>annee</td>
 						<td>pays</td>
+						<td>poid</td>
 					</tr>
 				</thead>
 				<tbody>
+					<c:set var="i" value="0"></c:set>
 					<c:forEach items="${results}" var="r">
+
 						<c:set var="v" value="${r.sourceObject}"></c:set>
 						<tr>
-							<td>${v.nomVoiture}</td>
-							<td>${v.cylendres}</td>
-							<td>${v.annee}</td>
-							<td>${v.pays}</td>
+							<td><c:out value="${v.nomVoiture}"></c:out></td>
+							<td><c:out value="${v.cylendres}"></c:out></td>
+							<td><c:out value="${v.annee}"></c:out></td>
+							<td><c:out value="${v.pays}"></c:out></td>
+							<td id="poid${i}"><c:out value="${i}"></c:out></td>
 						</tr>
+						<c:set var="i" value="${i+1}"></c:set>
 					</c:forEach>
-
-
-
 				</tbody>
-
 
 			</table>
 		</div>
@@ -92,7 +109,35 @@ td {
 	</form:form>
 
 
+<script type="text/javascript">
 
+	var i;
+	var n = $('#nbr_element').attr("value");
+// 	alert(n);
+
+	for (i = 0; i < n; i++) {
+		$("#poid" + i).bind('click', function(event) {
+			var target = $(event.target);
+// 			alert(target.text());
+			doAjaxPost(parseInt(target.text()));
+		});
+	}
+
+	function doAjaxPost(index) {
+		$.ajax({
+			type : "POST",
+			url : "http://localhost:8080/amine/completeSearch/ajaxCall",
+			data : "index=" + index ,
+			success : function(response) {
+				alert(response);
+				$("#poid" + index).text(response);
+			},
+			error : function(e) {
+				alert('Error: ' + e);
+			}
+		});
+	}
+</script>
 
 
 </body>

@@ -6,8 +6,9 @@ public class Voiture {
 	private Integer cylendres;
 	private Integer annee;
 	private String pays;
+	private Integer poid;
 	
-	
+//	
 	public String getNomVoiture() {
 		return nomVoiture;
 	}
@@ -32,6 +33,22 @@ public class Voiture {
 	public void setPays(String pays) {
 		this.pays = pays;
 	}
+		
+	public Integer getPoid() {
+		return poid;
+	}
+	public void setPoid(Integer poid) {
+		this.poid = poid;
+	}
+	
+	@Override
+	public String toString() {
+		return "Voiture [nomVoiture=" + nomVoiture + ", cylendres=" + cylendres + ", annee=" + annee + ", pays=" + pays
+				+ ", poid=" + poid + "]";
+	}
+
+
+	
 	
 	
 	
