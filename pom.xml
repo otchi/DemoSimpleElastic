@@ -16,14 +16,14 @@
 
 	<repositories>
 		<repository>
-			<id>localrepositor</id>
+			<id>localrepository</id>
 			<url>file:///home/amine/Bureau/localRepository</url>
 		</repository>
 	</repositories>
 
 	<dependencies>
+	
 		<!-- Spring -->
-
 
 		<dependency>
 			<groupId>org.springframework</groupId>

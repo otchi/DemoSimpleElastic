@@ -24,5 +24,11 @@
 			<value type="java.lang.String">resources/jsconfig/complete_voiture_config.json</value>
 		</constructor-arg>
 	</bean>
+	
+	<bean id="complex_data_demo" class="com.edifixio.amine.application.SearchInElasctic">
+		<constructor-arg name="fileConfig" >
+			<value type="java.lang.String">resources/jsconfig/complex_data_config_1.json</value>
+		</constructor-arg>
+	</bean>
 
 </beans>

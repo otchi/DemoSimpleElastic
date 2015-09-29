@@ -13,28 +13,6 @@
 		]
 	},
 
-	"_request": 
-	{
-		"class": "org.edifixio.amine.demo.entites.SimpleSearchBean",
-		"mapping": 
-		{
-			"search": 
-			[
-				"srch"
-			],
-
-			"from": 
-			[
-				"f"
-			],
-
-			"size": 
-			[
-				"s"
-			]
-		}
-	},
-
 	"_response": 
 	{
 		"class": "org.edifixio.amine.demo.entites.Ecrivain",
@@ -45,6 +23,7 @@
 			"nationalité": "pays",
 			"detail": {
 				"name":"detail",
+				"lazy":false,
 				"mapping":{
 					"biographie":"biographie",
 					"distinction majeur":"prix"

@@ -17,4 +17,10 @@ public class Detail {
 	public void setPrix(String prix) {
 		this.prix = prix;
 	}
+	@Override
+	public String toString() {
+		return "Detail [biographie=" + biographie + ", prix=" + prix + "]";
+	}
+	
+	
 }

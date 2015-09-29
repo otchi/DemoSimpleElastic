@@ -39,4 +39,11 @@ public class Ecrivain {
 		this.detail = detail;
 	}
 
+	@Override
+	public String toString() {
+		return "Ecrivain [nom=" + nom + ", livreMajeur=" + livreMajeur + ", pays=" + pays + ", detail=" + detail + "]";
+	}
+	
+	
+
 }
