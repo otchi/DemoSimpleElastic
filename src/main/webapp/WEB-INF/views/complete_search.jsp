@@ -1,4 +1,4 @@
-<%@page import="com.edifixio.amine.utils.Duo"%>
+<%@page import="com.edifixio.simplElastic.utils.Duo" %>
 <%@page import="java.util.LinkedList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>

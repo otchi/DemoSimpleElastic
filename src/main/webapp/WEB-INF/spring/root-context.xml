@@ -7,25 +7,25 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
-	<bean id="facet_demo" class="com.edifixio.amine.application.SearchInElasctic">
+	<bean id="facet_demo" class="com.edifixio.simplElastic.application.SearchInElasctic">
 		<constructor-arg name="fileConfig" >
 			<value type="java.lang.String">resources/jsconfig/match_all_voiture_config_1.json</value>
 		</constructor-arg>
 	</bean>
 	
-	<bean id="simple_search_demo" class="com.edifixio.amine.application.SearchInElasctic">
+	<bean id="simple_search_demo" class="com.edifixio.simplElastic.application.SearchInElasctic">
 		<constructor-arg name="fileConfig" >
 			<value type="java.lang.String">resources/jsconfig/simple_search_voiture_config_1.json</value>
 		</constructor-arg>
 	</bean>
 	
-	<bean id="complete_demo" class="com.edifixio.amine.application.SearchInElasctic">
+	<bean id="complete_demo" class="com.edifixio.simplElastic.application.SearchInElasctic">
 		<constructor-arg name="fileConfig" >
 			<value type="java.lang.String">resources/jsconfig/complete_voiture_config.json</value>
 		</constructor-arg>
 	</bean>
 	
-	<bean id="complex_data_demo" class="com.edifixio.amine.application.SearchInElasctic">
+	<bean id="complex_data_demo" class="com.edifixio.simplElastic.application.SearchInElasctic">
 		<constructor-arg name="fileConfig" >
 			<value type="java.lang.String">resources/jsconfig/complex_data_config_1.json</value>
 		</constructor-arg>

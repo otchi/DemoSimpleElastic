@@ -1,4 +1,4 @@
-<%@page import="com.edifixio.amine.utils.Duo"%>
+<%@page import="com.edifixio.simplElastic.utils.Duo" %>
 <%@page import="java.util.LinkedList"%>
 <%@page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>

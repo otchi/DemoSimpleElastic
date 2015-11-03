@@ -1,6 +1,6 @@
 package org.edifixio.amine.demo.entites;
 
-import com.edifixio.amine.application.elasticResults.AggrsReturnObject;
+import com.edifixio.simplElastic.application.elasticResults.AggrsReturnObject;
 
 public class SimplePageResponse {
 	

@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.edifixio.amine.application.SearchInElasctic;
-import com.edifixio.amine.application.elasticResults.AggrsReturnObject;
-import com.edifixio.amine.application.elasticResults.ApplicationReturn;
 import com.edifixio.jsonFastBuild.selector.JsonHandleUtil;
+import com.edifixio.simplElastic.application.SearchInElasctic;
+import com.edifixio.simplElastic.application.elasticResults.AggrsReturnObject;
+import com.edifixio.simplElastic.application.elasticResults.ApplicationReturn;
 import com.google.gson.JsonObject;
 
 @Controller
